@@ -33,13 +33,20 @@ type Commerce_ConfigurableProduct implements Commerce_Product {
     getIdentifier: String!
     hasMedia(group: String!, usage: String!): Boolean!
     getMedia(group: String!, usage: String!): Commerce_ProductMedia!
-    variants: [Commerce_Product_Variant!]
-    variantVariationAttributes: [String!]
+    selectableVariantAttributes: [Commerce_ConfigurableProduct_SelectableVariantAttribute!]
 }
 
-type Commerce_Product_Variant {
-    baseData: Commerce_BasicProductData!
-    saleableData: Commerce_ProductSaleable!
+type Commerce_ConfigurableProduct_SelectableVariantAttribute {
+    code: String!
+    label: String!
+    values: [Commerce_ConfigurableProduct_SelectableVariantAttribute_Value!]
+}
+
+type Commerce_ConfigurableProduct_SelectableVariantAttribute_Value {
+    code: String!
+    label: String!
+    selected: Boolean!
+    product: Commerce_Product
 }
 
 type Commerce_BasicProductData {
